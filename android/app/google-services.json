@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "758195617121",
+    "firebase_url": "https://flutix-van.firebaseio.com",
+    "project_id": "flutix-van",
+    "storage_bucket": "flutix-van.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:758195617121:android:bc92b4023302486cc25920",
+        "android_client_info": {
+          "package_name": "com.example.bwa_flutix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "758195617121-evl9k8hd6cc175imrn4b6o9692k0uidb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdPKSD5-McWln0VsnV8t_OwOAtT-XK9oQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "758195617121-evl9k8hd6cc175imrn4b6o9692k0uidb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:758195617121:android:5cfea8d59dc4166dc25920",
+        "android_client_info": {
+          "package_name": "com.example.flutix_dena"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "758195617121-evl9k8hd6cc175imrn4b6o9692k0uidb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdPKSD5-McWln0VsnV8t_OwOAtT-XK9oQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "758195617121-evl9k8hd6cc175imrn4b6o9692k0uidb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
