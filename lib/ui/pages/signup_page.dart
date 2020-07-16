@@ -14,6 +14,10 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController retypePasswordController = TextEditingController();
+  bool isNameValid = false;
+  bool isEmailValid = false;
+  bool isPasswordValid = false;
+  bool isRetypePasswordValid = false;
 
   void initState() {
     super.initState();
@@ -27,6 +31,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return WillPopScope(
         onWillPop: () {
           context.bloc<PageBloc>().add(GoToLoginPage());
+          return;
         },
         child: Scaffold(
             body: Container(
@@ -113,6 +118,11 @@ class _SignUpPageState extends State<SignUpPage> {
                           height: 40,
                         ),
                         TextField(
+                          onChanged: (text) {
+                            setState(() {
+                              isNameValid = true;
+                            });
+                          },
                           controller: nameController,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
@@ -125,6 +135,11 @@ class _SignUpPageState extends State<SignUpPage> {
                           height: 16,
                         ),
                         TextField(
+                          onChanged: (text) {
+                            setState(() {
+                              isEmailValid = EmailValidator.validate(text);
+                            });
+                          },
                           controller: emailController,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
@@ -137,6 +152,11 @@ class _SignUpPageState extends State<SignUpPage> {
                           height: 16,
                         ),
                         TextField(
+                          onChanged: (text) {
+                            setState(() {
+                              isPasswordValid = true;
+                            });
+                          },
                           controller: passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
@@ -150,6 +170,11 @@ class _SignUpPageState extends State<SignUpPage> {
                           height: 16,
                         ),
                         TextField(
+                          onChanged: (text) {
+                            setState(() {
+                              isRetypePasswordValid = true;
+                            });
+                          },
                           controller: retypePasswordController,
                           obscureText: true,
                           decoration: InputDecoration(
@@ -172,50 +197,68 @@ class _SignUpPageState extends State<SignUpPage> {
                               child: Text("Sign In",
                                   style: blackTextFont.copyWith(fontSize: 16)),
                               color: mainColor,
-                              onPressed: () {
-                                if (!(nameController.text.trim() != "" &&
-                                    emailController.text.trim() != "" &&
-                                    passwordController.text.trim() != "" &&
-                                    retypePasswordController.text.trim() !=
-                                        "")) {
-                                  Flushbar(
-                                    duration: Duration(seconds: 4),
-                                    flushbarPosition: FlushbarPosition.TOP,
-                                    backgroundColor: Colors.redAccent,
-                                    message: "Please fill all the field",
-                                  )..show(context);
-                                } else if (passwordController !=
-                                    retypePasswordController) {
-                                  Flushbar(
-                                    duration: Duration(seconds: 4),
-                                    flushbarPosition: FlushbarPosition.TOP,
-                                    backgroundColor: Colors.redAccent,
-                                    message:
-                                        "Mismatch password and confirm password",
-                                  )..show(context);
-                                } else if (passwordController.text.length < 6) {
-                                  Flushbar(
-                                    duration: Duration(seconds: 4),
-                                    flushbarPosition: FlushbarPosition.TOP,
-                                    backgroundColor: Colors.redAccent,
-                                    message:
-                                        "Password's length min 6 character",
-                                  )..show(context);
-                                } else if (!EmailValidator.validate(
-                                    emailController.text)) {
-                                  Flushbar(
-                                    duration: Duration(seconds: 4),
-                                    flushbarPosition: FlushbarPosition.TOP,
-                                    backgroundColor: Colors.redAccent,
-                                    message: "Worng formatted email address",
-                                  )..show(context);
-                                } else {
-                                  widget.regData.name = nameController.text;
-                                  widget.regData.email = emailController.text;
-                                  widget.regData.password =
-                                      passwordController.text;
-                                }
-                              }),
+                              onPressed: (isEmailValid &&
+                                      isNameValid &&
+                                      isPasswordValid &&
+                                      isRetypePasswordValid)
+                                  ? () {
+                                      if (!(nameController.text.trim() != "" &&
+                                          emailController.text.trim() != "" &&
+                                          passwordController.text.trim() !=
+                                              "" &&
+                                          retypePasswordController.text
+                                                  .trim() !=
+                                              "")) {
+                                        Flushbar(
+                                          duration: Duration(seconds: 4),
+                                          flushbarPosition:
+                                              FlushbarPosition.TOP,
+                                          backgroundColor: Colors.redAccent,
+                                          message: "Please fill all the field",
+                                        )..show(context);
+                                      } else if (passwordController.text !=
+                                          retypePasswordController.text) {
+                                        Flushbar(
+                                          duration: Duration(seconds: 4),
+                                          flushbarPosition:
+                                              FlushbarPosition.TOP,
+                                          backgroundColor: Colors.redAccent,
+                                          message:
+                                              "Mismatch password and confirm password",
+                                        )..show(context);
+                                      } else if (passwordController
+                                              .text.length <
+                                          6) {
+                                        Flushbar(
+                                          duration: Duration(seconds: 4),
+                                          flushbarPosition:
+                                              FlushbarPosition.TOP,
+                                          backgroundColor: Colors.redAccent,
+                                          message:
+                                              "Password's length min 6 character",
+                                        )..show(context);
+                                      } else if (!EmailValidator.validate(
+                                          emailController.text)) {
+                                        Flushbar(
+                                          duration: Duration(seconds: 4),
+                                          flushbarPosition:
+                                              FlushbarPosition.TOP,
+                                          backgroundColor: Colors.redAccent,
+                                          message:
+                                              "Worng formatted email address",
+                                        )..show(context);
+                                      } else {
+                                        widget.regData.name =
+                                            nameController.text;
+                                        widget.regData.email =
+                                            emailController.text;
+                                        widget.regData.password =
+                                            passwordController.text;
+                                        context.bloc<PageBloc>().add(
+                                            GoToPreferencePage(widget.regData));
+                                      }
+                                    }
+                                  : null),
                         )
                       ],
                     )

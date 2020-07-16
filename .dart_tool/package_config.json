@@ -146,6 +146,12 @@
       "languageVersion": "2.0"
     },
     {
+      "name": "firebase_storage",
+      "rootUri": "file:///C:/Users/Dena/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/firebase_storage-3.1.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "flushbar",
       "rootUri": "file:///C:/Users/Dena/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/flushbar-1.10.4",
       "packageUri": "lib/",
@@ -410,7 +416,7 @@
       "languageVersion": "2.6"
     }
   ],
-  "generated": "2020-07-15T11:52:54.701683Z",
+  "generated": "2020-07-16T05:18:26.172893Z",
   "generator": "pub",
   "generatorVersion": "2.8.4"
 }

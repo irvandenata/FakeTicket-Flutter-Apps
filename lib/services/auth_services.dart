@@ -15,6 +15,7 @@ class AuthServices {
           selectedLanguage: selectedLanguage);
 
       await UserServices.updateUser(user);
+      signIn(email, password);
 
       return SignInSignUpResult(user: user);
     } catch (e) {

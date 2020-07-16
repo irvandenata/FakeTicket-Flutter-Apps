@@ -31,10 +31,10 @@ class OnRegistrationPage extends PageState {
   List<Object> get props => [regData];
 }
 
-class OnPreferenceDataPage extends PageState {
+class OnPreferencePage extends PageState {
   final RegistrationData regData;
 
-  OnPreferenceDataPage(this.regData);
+  OnPreferencePage(this.regData);
 
   List<Object> get props => [regData];
 }

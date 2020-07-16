@@ -17,7 +17,6 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToSplashPage());
         return;
       },
       child: Scaffold(

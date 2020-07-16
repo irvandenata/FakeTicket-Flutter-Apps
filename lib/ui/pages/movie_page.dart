@@ -20,6 +20,16 @@ class MoviePage extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(defaultMargin, 10, defaultMargin, 10),
           child: BlocBuilder<UserBloc, UserState>(builder: (_, userState) {
             if (userState is UserLoaded) {
+              if (imageFileToUpload != null) {
+                print("masuk sini");
+                uploadImage(imageFileToUpload).then((downloadURL) {
+                  imageFileToUpload = null;
+                  print(downloadURL);
+                  context
+                      .bloc<UserBloc>()
+                      .add(UpdateUser(profileImage: downloadURL));
+                });
+              }
               return Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +99,8 @@ class MoviePage extends StatelessWidget {
         ),
         RaisedButton(
             child: Text("Sign Out"),
-            onPressed: () {
+            onPressed: () async {
+              await AuthServices.signOut();
               context.bloc<PageBloc>().add(GoToLoginPage());
             }),
       ],
