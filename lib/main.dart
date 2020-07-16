@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
           providers: [
             BlocProvider(create: (_) => PageBloc()),
             BlocProvider(create: (_) => UserBloc()),
+            BlocProvider(create: (_) => MovieBloc()..add(FetchMovie()))
           ],
           child: MaterialApp(
               theme: ThemeData().copyWith(primaryColor: mainColor),
